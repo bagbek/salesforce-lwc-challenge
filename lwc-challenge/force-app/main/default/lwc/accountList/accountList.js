@@ -25,7 +25,7 @@ export default class AccountList extends LightningElement {
     @track sortBy;
     @track sortDirection;
 
-    //#region Getting the Data 
+//#region Getting the Data 
 
   
 
@@ -40,6 +40,30 @@ export default class AccountList extends LightningElement {
         }
     }
 
-    //#endregion
+//#endregion
+
+//#region Sorting 
+    
+    // Function to sort accountlist based on the column header
+    doSorting(event) {
+        this.sortBy = event.detail.fieldName;
+        this.sortDirection = event.detail.sortDirection;
+        this.sortData(this.sortBy, this.sortDirection);
+    }
+
+    // Helper function to sort data based on the column header
+    sortData(fieldname, direction) {
+        let parseData = JSON.parse(JSON.stringify(this.data));
+        let keyValue = a => a[fieldname];
+        let isReverse = direction === 'asc' ? 1 : -1;
+        parseData.sort((x, y) => {
+            x = keyValue(x) ? keyValue(x) : ''; 
+            y = keyValue(y) ? keyValue(y) : '';
+            return isReverse * ((x > y) - (y > x));
+        });
+        this.data = parseData;
+    }   
+
+//#endregion
 
 }
