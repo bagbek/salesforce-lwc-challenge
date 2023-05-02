@@ -1,3 +1,6 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
+import getAccounts from '@salesforce/apex/AccountController.getAccountList';
 
-export default class AccountList extends LightningElement {}
+export default class AccountList extends LightningElement {
+    
+}
