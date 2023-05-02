@@ -1,4 +1,4 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import getAccounts from '@salesforce/apex/AccountController.getAccountList';
 
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
@@ -19,5 +19,27 @@ const COLUMNS = [
 
 
 export default class AccountList extends LightningElement {
+
+    @track data;
+    @track columns = COLUMNS;
+    @track sortBy;
+    @track sortDirection;
+
+    //#region Getting the Data 
+
+  
+
+    @wire(getAccounts)
+    accounts(result) {
+        if (result.data) {
+            this.error = undefined;
+            this.data = result.data;
+        } else if (result.error) {
+            this.error = result.error;
+            this.data = undefined;
+        }
+    }
+
+    //#endregion
 
 }

@@ -4,8 +4,21 @@
         <div style="width: auto;">
             <lightning-layout multiple-rows="true" vertical-align="end">
 
+                <template lwc:if={data}>
+                    <!--#region AccountList datatable -->
+                    <lightning-layout-item size="12" padding="around-small">
+                        <lightning-datatable data={data} columns={columns} key-field="id" hide-checkbox-column="true">
+                        </lightning-datatable>
+                    </lightning-layout-item>
+                    <!--#endregion -->
 
-                
+
+                </template>
+
+                <template lwc:else>
+                    <div class="slds-text-color_error">No Account Found.</div>
+                </template>
+
             </lightning-layout>
         </div>
     </lightning-card>
