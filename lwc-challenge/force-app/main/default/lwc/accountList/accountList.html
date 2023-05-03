@@ -4,6 +4,20 @@
         <div style="width: auto;">
             <lightning-layout multiple-rows="true" vertical-align="end">
 
+                  <!--#region Search Input -->
+                  <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="text" label="Enter Account Name To Search" value={nameQuery}
+                        onchange={handleNameQuery}></lightning-input>
+                </lightning-layout-item>
+                <!--#endregion -->
+
+                <!--#region Search Button -->
+                <lightning-layout-item size="2" padding="around-small">
+                    <lightning-button label="Search" variant="brand" onclick={searchAccountHandler}>
+                    </lightning-button>
+                </lightning-layout-item>
+                <!--#endregion -->
+
                 <template lwc:if={data}>
                     <!--#region AccountList datatable -->
                     <lightning-layout-item size="12" padding="around-small">
@@ -16,6 +30,8 @@
                     
 
                 </template>
+
+                
 
                 <template lwc:else>
                     <div class="slds-text-color_error">No Account Found.</div>

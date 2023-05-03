@@ -1,5 +1,6 @@
 import { LightningElement, wire, track } from 'lwc';
 import getAccounts from '@salesforce/apex/AccountController.getAccountList';
+import getAccountListByQuery from '@salesforce/apex/AccountController.getAccountListByQuery';
 
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 
@@ -63,6 +64,46 @@ export default class AccountList extends LightningElement {
         });
         this.data = parseData;
     }   
+
+//#endregion
+
+//#region Getting the Data 
+
+allAccounts;
+
+@wire(getAccounts)
+accounts(result) {
+    if (result.data) {
+        this.error = undefined;
+        this.totalAccounts = result.data.length;
+        this.allAccounts = result.data;
+        this.data = this.allAccounts.slice(0, this.pageSize);
+    } else if (result.error) {
+        this.error = result.error;
+        this.data = undefined;
+        this.totalAccounts = 0;
+    }
+}
+
+//#endregion
+
+//#region Searching 
+
+nameQuery;
+handleNameQuery(event){
+    this.nameQuery = event.target.value;
+}
+
+// Function to fetch Accounts based on entered name query
+searchAccountHandler() {
+    getAccountListByQuery({nameQuery: this.nameQuery})
+    .then(result => {
+        this.totalAccounts = result.length;
+        this.allAccounts = result;
+        this.data = this.allAccounts.slice(0, this.pageSize);
+    })
+    .catch(error => this.data = null);
+}
 
 //#endregion
 
