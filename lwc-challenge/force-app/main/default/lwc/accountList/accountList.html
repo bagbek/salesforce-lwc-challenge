@@ -18,6 +18,14 @@
                 </lightning-layout-item>
                 <!--#endregion -->
 
+                <!--#region Create Account Button -->
+                <lightning-layout-item size="6" padding="around-small" class="right-align">
+                    <lightning-button label="Create Account" title="Create Account" variant="brand"
+                        onclick={openModal}>
+                    </lightning-button>
+                </lightning-layout-item>
+                <!--#endregion -->
+
                 <template lwc:if={data}>
                     <!--#region AccountList datatable -->
                     <lightning-layout-item size="12" padding="around-small">

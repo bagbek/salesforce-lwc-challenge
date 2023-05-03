@@ -103,5 +103,30 @@ handlePagination(event){
 
 //#endregion
 
+//#region Create Account 
+
+accountObject = ACCOUNT_OBJECT;
+accountFields = [NAME, INDUSTRY, ANNUAL_REVENUE, PHONE, WEBSITE];
+
+@track showModal = false; 
+    
+openModal() {            
+    this.showModal = true;
+}
+
+hideModal() {   
+    this.showModal = false;
+} 
+
+handleSuccess(event) {
+    const evt = new ShowToastEvent({
+        title: 'Account created successfully.',
+        message: 'Account Record ID: ' + event.detail.id,
+        variant: 'success',
+    });
+    this.dispatchEvent(evt);
+}
+
+//#endregion
 
 }
