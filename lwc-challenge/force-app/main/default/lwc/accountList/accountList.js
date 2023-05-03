@@ -1,4 +1,5 @@
 import { LightningElement, wire, track } from 'lwc';
+
 import getAccounts from '@salesforce/apex/AccountController.getAccountList';
 import getAccountListByQuery from '@salesforce/apex/AccountController.getAccountListByQuery';
 
@@ -28,18 +29,21 @@ export default class AccountList extends LightningElement {
 
 //#region Getting the Data 
 
-  
+allAccounts;
 
-    @wire(getAccounts)
-    accounts(result) {
-        if (result.data) {
-            this.error = undefined;
-            this.data = result.data;
-        } else if (result.error) {
-            this.error = result.error;
-            this.data = undefined;
-        }
+@wire(getAccounts)
+accounts(result) {
+    if (result.data) {
+        this.error = undefined;
+        this.totalAccounts = result.data.length;
+        this.allAccounts = result.data;
+        this.data = this.allAccounts.slice(0, this.pageSize);
+    } else if (result.error) {
+        this.error = result.error;
+        this.data = undefined;
+        this.totalAccounts = 0;
     }
+}
 
 //#endregion
 
@@ -67,26 +71,6 @@ export default class AccountList extends LightningElement {
 
 //#endregion
 
-//#region Getting the Data 
-
-allAccounts;
-
-@wire(getAccounts)
-accounts(result) {
-    if (result.data) {
-        this.error = undefined;
-        this.totalAccounts = result.data.length;
-        this.allAccounts = result.data;
-        this.data = this.allAccounts.slice(0, this.pageSize);
-    } else if (result.error) {
-        this.error = result.error;
-        this.data = undefined;
-        this.totalAccounts = 0;
-    }
-}
-
-//#endregion
-
 //#region Searching 
 
 nameQuery;
@@ -106,5 +90,18 @@ searchAccountHandler() {
 }
 
 //#endregion
+
+//#region Pagination 
+
+totalAccounts = 0;
+pageSize = 5;
+handlePagination(event){
+    const start = (event.detail - 1) * this.pageSize;
+    const end = this.pageSize * event.detail;
+    this.data = this.allAccounts.slice(start, end);
+}
+
+//#endregion
+
 
 }

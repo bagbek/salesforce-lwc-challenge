@@ -27,11 +27,18 @@
                     </lightning-layout-item>
                     <!--#endregion -->
 
-                    
+                    <!--#region Pagination -->
+                    <lightning-layout-item size="12" padding="around-small">
+                        <div class="slds-float_right slds-size_1-of-1">
+                            <template if:true={totalAccounts}>
+                                <c-pagination totalrecords={totalAccounts} page-size={pageSize}
+                                    onpagination={handlePagination}></c-pagination>
+                            </template>
+                        </div>
+                    </lightning-layout-item>
+                    <!--#endregion -->
 
                 </template>
-
-                
 
                 <template lwc:else>
                     <div class="slds-text-color_error">No Account Found.</div>

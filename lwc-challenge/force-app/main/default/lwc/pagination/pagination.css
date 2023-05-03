@@ -1,0 +1,36 @@
+.pages
+{
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 2.1rem;
+    max-height: 2.8rem;
+    padding: 22px
+}
+
+lightning-button{
+    --slds-c-button-radius-border: 50%;
+    --slds-c-button-neutral-spacing-inline-end: 16px;
+    --slds-c-button-neutral-spacing-inline-start: 16px;
+    --slds-c-button-text-color: #88080;
+    --slds-c-button-line-height: 38px;
+    --slds-c-button-neutral-color-background: none;
+    --slds-c-button-neutral-color-border-hover : none;
+}
+
+.currentpage{
+    --slds-c-button-neutral-color-background : #002f6c;
+    --slds-c-button-neutral-color-background-active : #002f6c;
+    --slds-c-button-text-color: #fff;;
+    --slds-c-button-neutral-color-border-hover : none;
+}
+
+.info{
+    color: #002f6c;
+    padding-left: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: Frank Ruhl Libre,
+    sans-serif;
+    text-align: left;
+}

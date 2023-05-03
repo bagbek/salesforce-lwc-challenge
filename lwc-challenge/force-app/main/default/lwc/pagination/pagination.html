@@ -1,0 +1,29 @@
+<template>
+    <span class="info slds-float_left">Accounts: {startrange}-{endrange} of {totalrecords}</span>
+    <div class="container slds-float_right">
+        <p>
+            <lightning-button-icon  
+                size="small" 
+                class="slds-p-around_small" 
+                variant="bare" disabled={disableleftarrow} 
+                onclick={handlePrevious} 
+                icon-name="utility:chevronleft">
+            </lightning-button-icon >
+            <span>
+                <template for:each={pageList} for:item="p" for:index="index">
+                    <lightning-button key={p} label={p} onclick={handleClick} data-index ={index}></lightning-button>
+                </template>
+            </span>
+            <span>
+                <lightning-button-icon  
+                    size="small" 
+                    class="slds-p-around_small" 
+                    variant="bare" 
+                    onclick={handleNext} 
+                    disabled={disablerightarrow} 
+                    icon-name="utility:chevronright">
+                </lightning-button-icon >
+            </span>
+        </p>
+    </div>
+</template>
