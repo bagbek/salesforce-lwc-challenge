@@ -3,6 +3,7 @@ Created a "AccountList" Lightning Web Component to display a list of Accounts wi
 
 <p dir="auto aling="center">
 <h2 align="center">Overview of the Account List App</h2>
+<h3 align="center">One Look is Worth a Thousand Words "Henrik Ibsen"</h3>
 <a href="https://github.com/bagbek/salesforce-lwc-challenge" rel="nofollow"><img src="./lwc-challenge/assets/gif/custom-lwc.png" height="600" alt="Account App" style="max-width: 100%;"></a>
 
 
