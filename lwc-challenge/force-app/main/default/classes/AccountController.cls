@@ -11,7 +11,7 @@ public with sharing class AccountController {
         List<Account> accountList = [SELECT  Name, Industry, AnnualRevenue, Phone, Website FROM Account WHERE Name LIKE :nameQuery];
         
         if(accountList.isEmpty()) {
-            throw new AuraHandledException('No Record Found for given name.');
+            throw new QueryException('No Record Found for given name.');
         }
         return accountList; 
     }
