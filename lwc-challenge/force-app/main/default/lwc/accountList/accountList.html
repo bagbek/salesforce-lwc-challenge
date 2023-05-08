@@ -72,6 +72,15 @@
                     </lightning-layout-item>
                     <!--#endregion -->
 
+                    <!--  -->
+                    <lightning-datatable
+                        data={data}
+                        columns={columns}
+                        key-field="id"
+                        onrowselection={getSelectedName}
+                         >
+                    </lightning-datatable>
+
                 </template>
 
                 <template lwc:else>
